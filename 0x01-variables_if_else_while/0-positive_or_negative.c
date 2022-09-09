@@ -1,22 +1,18 @@
 #include <stdlib.h>
 #include <time.h>
 #include <stdio.h>
-/* more headers goes there */
 
 /**
  * main - Prints if number is positive, zero or negative
  *
- * return: Always (Success) 
+ * Return: Always (Success)
  */
-
-
 int main(void)
 {
 		int n;
 
 		srand(time(0));
 		n = rand() - RAND_MAX / 2;
-		/* your cod	e goes there */
 
 		if (n > 0)
 		{
