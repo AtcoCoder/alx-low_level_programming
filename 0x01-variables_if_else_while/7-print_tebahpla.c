@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 /**
- * * main - Prints the numbers since 0 to 9
+ * main - Prints lowercase alphabet in reverse
  *
  * Return: Always (Success)
  */
@@ -11,9 +11,8 @@ int main(void)
 
 	for (n = '0'; n <= '9'; n++)
 	{
-		putchar(n);
+	putchar(n);
 	}
-
 	putchar('\n');
 	return (0);
 }
