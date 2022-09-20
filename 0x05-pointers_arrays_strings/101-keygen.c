@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <main.h>
 
 /**
  * main - generates keygen.
@@ -8,18 +9,19 @@
  */
 int main(void)
 {
-	int r = 0, c = 0;
-	time_t t;
+	char seed[53] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	char password[15];
+	int i, n, passw, compem;
 
-	srand((unsigned int) time(&t));
-	while (c < 2772)
+	srand(time(0));
+	for (i = 0; passw < 2772; i++)
 	{
-		r = rand() % 128;
-		if ((c + r) > 2772)
-			break;
-		c = c + r;
-		printf("%c", r);
+		n = rand() % 10;
+		password[i] = seed[n];
+		passw += password[i];
 	}
-	printf("%c\n", (2772 - c));
+	complem = 2772 - passw;
+	password[i] = complem;
+	printf("%s\n", password);
 	return (0);
 }
