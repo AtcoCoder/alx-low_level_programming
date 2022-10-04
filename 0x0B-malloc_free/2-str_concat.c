@@ -15,6 +15,11 @@ char *str_concat(char *s1, char *s2)
 	char *ptr;
 
 
+	if (s1 == NULL)
+		s1 = "";
+	if (s2 == NULL)
+		s2 = "";
+
 	for (len = 0; s1[len] != '\0'; len++)
 	{
 	}
@@ -35,10 +40,6 @@ char *str_concat(char *s1, char *s2)
 	for (j = 0; s2[j] != '\0'; j++)
 	{
 		ptr[i + j] = s2[j];
-	}
-	if (size == 0)
-	{
-		ptr = "";
 	}
 	return (ptr);
 }
