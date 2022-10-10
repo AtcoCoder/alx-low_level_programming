@@ -1,5 +1,5 @@
-#ifndef ABS
-#define ABS
+#ifndef MAIN_H
+#define MAIN_H
 
 #include "3-function_like_macro.h"
 
