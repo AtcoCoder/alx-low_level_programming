@@ -6,6 +6,7 @@
  *
  * @size: size of the array
  * @action: pointer to the function to be executed
+ * @array: array being used
  *
  * Return: Nothing.
  */
