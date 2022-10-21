@@ -27,20 +27,27 @@ int _strlen(char *s)
  *
  * Return: pointer to the new node.
  */
-list_t *add_node(const list_t **head, const char *str)
+list_t *add_node(list_t **head, const char *str)
 {
 	list_t *ptr;
-	char *s;
-	
-	int len = _strlen(str);
+	int length;
 
 	ptr = malloc(sizeof(list_t));
-	s = malloc(sizeof(char) * len + 1);
+	if (ptr == NULL)
+	{
+		return (NULL);
+	}
 
-	ptr = (list_t *)head;
+	for (length = 0; str[length] != '\0'; length++)
+	{
+	}
 
-	ptr->s = str;
-	ptr = ptr->new;
+	ptr->str = strdup(str);
+	ptr->len = length;
+	ptr->next = NULL;
 
-	return (ptr);
+	ptr->next = *head;
+	*head = ptr;
+
+	return (*head);
 }
