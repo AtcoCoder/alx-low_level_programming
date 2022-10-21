@@ -15,7 +15,6 @@ size_t print_list(const list_t *h)
 
 	list_t *ptr;
 
-	ptr = malloc(sizeof(list_t));
 	ptr = (list_t *)h;
 
 	count = 0;
@@ -32,6 +31,5 @@ size_t print_list(const list_t *h)
 		ptr = ptr->next;
 		count++;
 	}
-	free(ptr);
 	return (count);
 }
