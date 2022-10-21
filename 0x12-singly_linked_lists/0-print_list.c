@@ -21,12 +21,13 @@ size_t print_list(const list_t *h)
 		if (ptr->str == NULL)
 		{
 			printf("[0] (nil)\n");
+			ptr = ptr->next;
 		}
 		else
 		{
 			printf("[%d] %s\n", ptr->len, ptr->str);
+			ptr = ptr->next;
 		}
-		ptr = ptr->next;
 		count++;
 	}
 	return (count);
