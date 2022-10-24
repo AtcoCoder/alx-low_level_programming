@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 /**
- * add_nodeint_end - adds a new node at the end of a listint_t
+ * add_nodeint - adds a new node at the beginning of a listint_t
  *
  * @head: pointer to pointer to the first node of the list
  * @n: integer data of the node to be added
