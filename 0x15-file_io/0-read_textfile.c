@@ -1,41 +1,46 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "main.h"
+#include <stdlib.h>
+#include <unistd.h>
+#include <fcntl.h>
 
 /**
- * read_textfile - reads a text file and prints it to the POSIX standard output
+ * read_textfile - reads a text file and prints it to the posix stdout
  *
- * @filename: text to read
- * @letters: number of letters it should read and print
+ * @filename: pointer to the text file
+ * @letters: the number of letters it should read and print
  *
- * Return: number of letters it could read and print, 0 if fails
+ * Return: 0 if it fails, otherwise the actual number of letters it could read
+ * and print
  */
 ssize_t read_textfile(const char *filename, size_t letters)
 {
-	int fd, n_read, n_write;
-	char *s;
+	int fd;
+	ssize_t nb_write, nb_read;
+	char *buf;
 
-	if (filename == NULL)
+	if (!filename)
+	{
 		return (0);
-	s = malloc(letters * sizeof(char) + 1);
-	if (!s)
-		return (0);
-	fd = open(filename, O_RDONLY);
+	}
+	fd = open(filename, O_RDWR);
+
 	if (fd == -1)
 	{
-		free(s);
 		return (0);
 	}
-	n_read = read(fd, s, letters);
-	if (n_read == -1)
+
+	buf = malloc(sizeof(char) * letters);
+
+	if (buf == NULL)
 	{
-		free(s);
 		return (0);
 	}
-	n_write = write(STDOUT_FILENO, s, n_read);
+
+	nb_read = read(fd, buf, letters);
+	nb_write = write(STDOUT_FILENO, buf, nb_read);
+
 	close(fd);
-	free(s);
-	if (n_read == n_write)
-		return (n_write);
-	return (0);
+	free(buf);
+
+	return (nb_write);
 }
