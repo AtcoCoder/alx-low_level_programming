@@ -13,6 +13,8 @@ void hash_table_print(const hash_table_t *ht)
 	hash_node_t **array;
 	hash_node_t *temp;
 
+	if (ht == NULL)
+		return;
 	count = count_keys(ht);
 
 	array = ht->array;
