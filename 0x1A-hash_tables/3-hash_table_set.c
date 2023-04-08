@@ -30,8 +30,9 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 }
 
 /**
- * create_node - creates node containing a key and a value
+ * add_node - add node containing a key and a value
  *
+ * @head: pointer to the pointer to node in the array
  * @key: the key, nonempty string
  * @value: the value associated with the key
  *
