@@ -15,42 +15,18 @@
 int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 {
 	unsigned long int index;
-	hash_node_t *node;
 	hash_node_t *current_node;
-	char *value_dup;
 
 	if ((key == NULL) || strcmp(key, "") != 0)
 		return (0);
 	if ((ht == NULL) || (value == NULL))
 		return (0);
-	value_dup = strdup(value);
-	if (value_dup == NULL)
-		return (0);
-	node = create_node(key, value_dup);
-	index = key_index((unsigned char *)key, ht->size);
-	current_node = ht->array[index];
 
+	index = key_index((unsigned char *)key, ht->size);
+	current_node = add_node(&(ht->array[index]), key, value);
 	if (current_node == NULL)
-	{
-		ht->array[index] = node;
-		return (1);
-	}
-	else
-	{
-		while (current_node != NULL)
-		{
-			if ((strcmp(current_node->key, key) == 0))
-			{
-				free(current_node->value);
-				free(node);
-				current_node->value = value_dup;
-			}
-			current_node = current_node->next;
-		}
-		node->next = ht->array[index];
-		ht->array[index] = node;
-		return (1);
-	}
+		return (0);
+	return (1);
 }
 
 /**
@@ -61,16 +37,31 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
  *
  * Return: pointer to the node created.
  */
-hash_node_t *create_node(const char *key, const char *value)
+hash_node_t *add_node(hash_node_t **head, const char *key, const char *value)
 {
-	hash_node_t *node = malloc(sizeof(hash_node_t));
+	hash_node_t *node;
 
-	if (node == NULL)
+	node = *head;
+
+	while (node != NULL)
 	{
-		return (NULL);
+		if (strcmp(node->key, key) == 0)
+		{
+			free(node->value);
+			node->value = strdup(value);
+			return (*head);
+		}
+		node = node->next;
 	}
-	strcpy(node->key, key);
-	strcpy(node->value, value);
-	node->next = NULL;
-	return (node);
+
+	node = malloc(sizeof(hash_node_t));
+	if (node == NULL)
+		return (NULL);
+
+	node->key = strdup(key);
+	node->value = strdup(value);
+	node->next = *head;
+	*head = node;
+
+	return (*head);
 }
