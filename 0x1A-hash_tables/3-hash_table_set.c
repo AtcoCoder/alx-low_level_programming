@@ -20,6 +20,8 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 
 	if (strcmp(key, "") != 0)
 		return (0);
+	if ((ht == NULL) || (value == NULL))
+		return (0);
 
 	node = create_node(key, value);
 	index = key_index((unsigned char *)key, ht->size);
