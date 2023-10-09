@@ -34,6 +34,43 @@ typedef struct hash_table_s
 	hash_node_t **array;
 } hash_table_t;
 
+/**
+ * struct shash_nodoe_s - Node of a sorted hash table
+ *
+ * @key: The key, string
+ * The key is unique in the HashTable
+ * @value: The value corresponding to a key
+ * @next: A pointer to the next node of the list
+ * @sprev: A pointer to the previous element of the sorted linked list
+ * @snext: A pointer to the next element of the sorted linked list
+ */
+typedef struct shash_node_s
+{
+	char *key;
+	char *value;
+	struct shash_node_s *next;
+	struct shash_node_s *sprev;
+	struct shahs_node_s *snext;
+} shash_node_t;
+
+/**
+ * struct shash_table_s - Sorted hash table data structure
+ *
+ * @size: The size of the array
+ * @array: An array of size @size
+ * Each cell of this array is a pointer to the first node of a linked list,
+ * because we want our HashTable to use a Chaining collision handling
+ * @shead: A pointer to the first element of the sorted linked list
+ * @stail: A pointer to the last element of the sorted linked list
+ */
+typedef struct shash_table_s
+{
+	unsigned long int size;
+	shash_node_t **array;
+	shash_node_t *shead;
+	shash_node_t *stail;
+} shash_table_t;
+
 hash_table_t *hash_table_create(unsigned long int size);
 unsigned long int hash_djb2(const unsigned char *str);
 unsigned long int key_index(const unsigned char *key, unsigned long int size);
@@ -45,5 +82,35 @@ unsigned long int count_keys(const hash_table_t *ht);
 void hash_table_delete(hash_table_t *ht);
 void free_bucket(hash_node_t *head);
 
+
+/**
+ * hash_table_get - retrieves a value associated with a key
+ *
+ * @ht: the hash table
+ * @key: the key to be looked for
+ *
+ * Return: value associated with the key, or NULL if key is not found
+ */
+char *shash_table_get(const shash_table_t *ht, const char *key)
+{
+	shash_node_t *node_concerned;
+	unsigned long int index;
+
+	if (ht == NULL || key == NULL || *key == '\0')
+		return (NULL);
+
+	index = key_index((unsigned char *)key, ht->size);
+	node_concerned = ht->array[index];
+
+	while (node_concerned != NULL)
+	{
+		if (strcmp(node_concerned->key, key) == 0)
+		{
+			return (node_concerned->value);
+		}
+		node_concerned = node_concerned->next;
+	}
+	return (NULL);
+}
 
 #endif
