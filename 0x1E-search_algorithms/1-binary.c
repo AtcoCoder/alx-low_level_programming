@@ -30,13 +30,14 @@ int binary_search(int *array, size_t size, int value)
 		}
 		else if (array[m] > value)
 		{
-			r = m;
+			r = m - 1;
 		}
 		else
 		{
 			return (m);
 		}
 	}
+	print_array(array, l, r);
 	return (-1);
 }
 
