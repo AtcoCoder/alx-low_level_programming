@@ -10,5 +10,7 @@ void _puts(char *str);
 int jump_search(int *array, size_t size, int value);
 void print_found(size_t prev_jump, size_t curr_jump);
 void print_state(size_t index, int value);
+int interpolation_search(int *array, size_t size, int value);
+void print_out_of_bound(size_t pos);
 
 #endif
