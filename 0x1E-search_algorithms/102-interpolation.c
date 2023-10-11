@@ -26,8 +26,7 @@ int interpolation_search(int *array, size_t size, int value)
 
 	while (low <= high)
 	{
-		pos = low + (((double)(high - low) / \
-					(array[high])) * (value - array[low]));
+		pos = estimate_pos(array, high, low, value);
 
 		if (pos >= size)
 		{
@@ -63,7 +62,7 @@ int interpolation_search(int *array, size_t size, int value)
  */
 void print_state(size_t index, int value)
 {
-        printf("Value checked array[%lu] = [%d]\n", index, value);
+	printf("Value checked array[%lu] = [%d]\n", index, value);
 }
 
 /**
@@ -76,4 +75,23 @@ void print_state(size_t index, int value)
 void print_out_of_bound(size_t pos)
 {
 	printf("Value checked array[%lu] is out of range\n", pos);
+}
+
+/**
+ * estimate_pos - estimates the position of value
+ *
+ * @array: a pointer to the first element of the array
+ * @hi: index of the last element in the array
+ * @lo: index of the first element in the array
+ * @val: target value
+ *
+ * Return: estimated position.
+ */
+size_t estimate_pos(int *array, size_t hi, size_t lo, int val)
+{
+	size_t pos;
+
+	pos = lo + (((double)(hi - lo) / (array[hi])) * (val - array[lo]));
+
+	return (pos);
 }
