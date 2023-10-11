@@ -16,11 +16,11 @@ int binary_search(int *array, size_t size, int value)
 {
 	size_t l, r, m;
 
+	if (array == NULL)
+		return (-1);
+
 	l = 0;
 	r = size - 1;
-
-	if (array == NULL)
-		return (1);
 
 	while (l < r)
 	{
@@ -57,35 +57,16 @@ int binary_search(int *array, size_t size, int value)
 void print_array(int *array, size_t left, size_t right)
 {
 	size_t i;
-	char *msge = "Searching in array: ";
 
-	_puts(msge);
+	printf("Searching in array: ");
 
 	for (i = left; i <= right; i++)
 	{
-		putchar(array[i] + '0');
+		printf("%d", array[i]);
 		if (i != right)
 		{
-			putchar(',');
-			putchar(' ');
+			printf(", ");
 		}
 	}
-	putchar('\n');
-}
-
-/**
- * _puts - prints string without newline
- *
- * @str: string to be print
- *
- * Return: Nothing.
- */
-void _puts(char *str)
-{
-	int i;
-
-	for (i = 0; str[i] != '\0'; i++)
-	{
-		putchar(str[i]);
-	}
+	printf("\n");
 }

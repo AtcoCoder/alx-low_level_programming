@@ -21,7 +21,7 @@ int linear_search(int *array, size_t size, int value)
 
 	for (i = 0; i < size; i++)
 	{
-		print_comparison(i, array[i]);
+		print_state(i, array[i]);
 		if (array[i] == value)
 		{
 			return (i);
@@ -32,73 +32,14 @@ int linear_search(int *array, size_t size, int value)
 }
 
 /**
- * print_number - prints number
- *
- * @num: number to be printed
- *
- * Return: Nothing.
- */
-void print_number(int num)
-{
-	int i, signed_num;
-	char lastd;
-	char array[8];
-
-	if (num == 0)
-		putchar('0');
-	else
-	{
-		if (num < 0)
-		{
-			signed_num = num;
-			num = (-1) * num;
-		}
-		i = 0;
-		while (num != 0)
-		{
-			lastd = num % 10;
-			num = num / 10;
-			array[i] = lastd;
-			i++;
-		}
-		i--;
-
-		if (signed_num < 0)
-			putchar('-');
-		for (; i >= 0; i--)
-		{
-			putchar(array[i] + '0');
-		}
-	}
-}
-
-/**
- * print_comparison - prints the position of the search
+ * print_state - prints the position of the search
  *
  * @index: current index
  * @value: the value at that index
  *
  * Return: Nothing.
  */
-void print_comparison(size_t index, int value)
+void print_state(size_t index, int value)
 {
-	int i;
-	char *str = "Value checked array[0] = [0]";
-
-	for (i = 0; str[i] != '\0'; i++)
-	{
-		if (i == 20)
-		{
-			print_number(index);
-		}
-		else if (i == 26)
-		{
-			print_number(value);
-		}
-		else
-		{
-			putchar(str[i]);
-		}
-	}
-	putchar('\n');
+	printf("Value checked array[%lu] = [%d]\n", index, value);
 }
