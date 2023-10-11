@@ -1,1 +1,1 @@
-n(nlog(n))
+O(nlog(n))
