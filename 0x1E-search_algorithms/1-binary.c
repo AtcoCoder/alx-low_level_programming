@@ -14,23 +14,19 @@
  */
 int binary_search(int *array, size_t size, int value)
 {
-	size_t l, r, m, new_range, constant;
+	size_t l, r, m, new_range;
 
 	if (array == NULL)
 		return (-1);
 
 	l = 0;
 	r = size - 1;
-	constant = 0;
-
-	if ((size % 2) != 0)
-		constant = 1;
 
 	while (l < r)
 	{
 		print_array(array, l, r);
 
-		new_range = l + r + constant;
+		new_range = l + r;
 		m = new_range / 2;
 
 		if (array[m] < value)
@@ -46,7 +42,7 @@ int binary_search(int *array, size_t size, int value)
 			return (m);
 		}
 	}
-	print_array(array, l - 1, r);
+	print_array(array, l, r);
 	return (-1);
 }
 
