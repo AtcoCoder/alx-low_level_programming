@@ -80,7 +80,7 @@ void print_out_of_bound(size_t pos)
 /**
  * estimate_pos - estimates the position of value
  *
- * @array: a pointer to the first element of the array
+ * @arr: a pointer to the first element of the array
  * @hi: index of the last element in the array
  * @lo: index of the first element in the array
  * @val: target value
