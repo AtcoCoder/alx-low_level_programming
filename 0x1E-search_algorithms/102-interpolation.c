@@ -87,11 +87,11 @@ void print_out_of_bound(size_t pos)
  *
  * Return: estimated position.
  */
-size_t estimate_pos(int *array, size_t hi, size_t lo, int val)
+size_t estimate_pos(int *arr, size_t hi, size_t lo, int val)
 {
 	size_t pos;
 
-	pos = lo + (((double)(hi - lo) / (array[hi] - array[lo])) * (val - array[lo]));
+	pos = lo + (((double)(hi - lo) / (arr[hi] - arr[lo])) * (val - arr[lo]));
 
 	return (pos);
 }
