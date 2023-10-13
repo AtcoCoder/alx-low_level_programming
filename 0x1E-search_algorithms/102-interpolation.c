@@ -91,7 +91,7 @@ size_t estimate_pos(int *array, size_t hi, size_t lo, int val)
 {
 	size_t pos;
 
-	pos = lo + (((double)(hi - lo) / (array[hi])) * (val - array[lo]));
+	pos = lo + (((double)(hi - lo) / (array[hi] - array[lo])) * (val - array[lo]));
 
 	return (pos);
 }
