@@ -15,5 +15,7 @@ void print_out_of_bound(size_t pos);
 size_t estimate_pos(int *array, size_t high, size_t low, int value);
 int exponential_search(int *array, size_t size, int value);
 int _binary_search(int *array, int value, size_t l_bound, size_t u_bound);
+int recursive_binary(int *array, size_t left, size_t right, int value);
+int advanced_binary(int *array, size_t size, int value);
 
 #endif
