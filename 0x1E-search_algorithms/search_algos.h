@@ -13,5 +13,7 @@ void print_state(size_t index, int value);
 int interpolation_search(int *array, size_t size, int value);
 void print_out_of_bound(size_t pos);
 size_t estimate_pos(int *array, size_t high, size_t low, int value);
+int exponential_search(int *array, size_t size, int value);
+int _binary_search(int *array, int value, size_t l_bound, size_t u_bound);
 
 #endif
